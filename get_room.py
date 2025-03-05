@@ -27,7 +27,7 @@ class time_of_class:
     def __repr__(self):
         return f"{self.start} - {self.end}"
 
-if __name__ == "__main__":
+def main():
     # 获取当前日期和时间
     now = datetime.datetime.now()
     # 获取星期几，其中星期一到星期日对应的整数分别为0到6
