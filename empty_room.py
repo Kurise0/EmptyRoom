@@ -2,16 +2,17 @@ from bs4 import BeautifulSoup, Comment
 import re
 
 class Room:
-    def __init__(self, name, num):
+    def __init__(self, name, num, first_time = 2):
         self.name = name
         self.num = num
+        self.first_time = first_time
     def __str__(self):
         return self.name + str(self.num)
 
 '''
 获取教室的使用情况
 '''
-def getRoomUsage(fileName): 
+def getRoomUsage(fileName) -> list: 
     with open(fileName, "r", encoding="utf-8") as f:
         html = f.read()
         soup = BeautifulSoup(html,'html.parser')
@@ -30,7 +31,7 @@ def getRoomUsage(fileName):
 '''
 获取教室映射, key为Room对象, value为一个长度为12的数组, 0表示空闲, 1表示占用
 '''
-def getMap(l):
+def getMap(l) -> dict:
     dic = {}
     index = 0
     layer = 100
@@ -47,13 +48,13 @@ def getMap(l):
             index = 0
         i += 1
     return dic
-
 '''
 获取某个时间段的空闲教室
 dic 表示教室中的使用情况
 class_time 表示第几节课
+返回 list of Room
 '''
-def getEmpty(dic, class_time):
+def getEmpty(dic, class_time) -> list:
     res = []
     for key in dic.keys():
         if dic[key][class_time - 1] == 0 and dic[key][class_time] == 0:
@@ -71,7 +72,7 @@ l 为 空闲教室list
 class_room 为 课程所在教室
 返回一个list, 元素为(教室, 评分)
 '''
-def score(l, class_room):
+def score(l, class_room) -> list:
     res = []
     for i in l:
         room_num = int(i.num)
@@ -92,5 +93,5 @@ def score(l, class_room):
 # for i in getEmpty(getMap(getRoomUsage()), 7):
 #     print(i)
 
-for i in score(getEmpty(getMap(getRoomUsage("空闲教室3.htm")), 5), Room("天工南", 506)):
-    print(i[0], i[1])
+def get_final_room(fileName, room):
+    return score(getEmpty(getMap(getRoomUsage(fileName)), room.first_time), room)
