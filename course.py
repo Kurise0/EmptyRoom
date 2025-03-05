@@ -66,6 +66,10 @@ def get_final_week(fileName) -> dict:
 #         res.append(s[start + 1: end])
 #         s = s[end + 1:]
 #     return res
+'''
+index 为教室名字的位置
+返回 教室名字外层括号的位置
+'''
 def get_index_of_start_and_end(s, index) -> tuple:
     left = right = index 
     while (s[left] != '(' or s[right] != ')'):
@@ -94,12 +98,7 @@ def get_important_info(map) -> None:
                 index_of_room_name = j.find("明理") if j.find("天工") == -1 else j.find("天工")
         map[i] = next_list
 
-
 map = get_final_week("./课表/course.html")
 # for i in map:
 #     print(i, map[i])
 # get_important_info(map)
-for i in map:
-    print(i, map[i])
-
-

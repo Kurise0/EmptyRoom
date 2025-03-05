@@ -1,11 +1,10 @@
 from bs4 import BeautifulSoup, Comment
 import re
 
-class Room:
-    def __init__(self, name, num, first_time = 2):
+class Empty_Room:
+    def __init__(self, name, num):
         self.name = name
         self.num = num
-        self.first_time = first_time
     def __str__(self):
         return self.name + str(self.num)
 
@@ -41,7 +40,7 @@ def getMap(l) -> dict:
         index += 1
         if index == 11 or index == 13 or index == 15:
             continue
-        r = Room("天工南", layer + index)
+        r = Empty_Room("天工南", layer + index)
         dic[r] = [int(i) for i in l[i].split(",")]
         if ((index == 12 and layer == 100) or index == 16):
             layer += 100 
