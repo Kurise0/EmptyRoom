@@ -1,5 +1,4 @@
 from bs4 import BeautifulSoup, Comment
-import re
 
 class Empty_Room:
     def __init__(self, name, num):

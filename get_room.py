@@ -32,7 +32,7 @@ def main():
     now = datetime.datetime.now()
     # 获取星期几，其中星期一到星期日对应的整数分别为0到6
     day = now.weekday()
-    map =  c.get_final_week("./课表/course.html")
+    map =  c.get_final_week("./课表/course.htm")
     # 当天上课的课程
     today_course = map[day]
     # 获取当前是 第 几 周
@@ -52,9 +52,10 @@ def main():
         room = Class_Room(arr[0][:index_of_first_num], int(arr[0][index_of_first_num:]), int(arr[1]))
         rooms.append(room)
     for i in rooms:
-        print(i)
-        print("空闲教室: ")
+        print(f"当前日期：{day2}", )
+        print(i, )
+        print("空闲教室: ", )
         for j in er.get_final_room(f"./空闲教室/空闲教室{day + 1}.htm", i):
-            print('\t', j[0], "得分为 : ",j[1])
-        print()
+            print('\t', j[0], "得分为 : ",j[1], )
+        print('', )
 

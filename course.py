@@ -1,6 +1,4 @@
 from bs4 import BeautifulSoup
-from selenium import webdriver
-from selenium.webdriver.common.by import By
 
 def get_class_time(fileName) -> list: 
     with open(fileName, "r", encoding="utf-8") as f:
